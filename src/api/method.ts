@@ -1,5 +1,6 @@
+import { AxiosResponse } from 'axios';
 import axiosInstance from './axiosInstance';
 
-export function getData<Type>(url: string): Type {
+export function getData<Type>(url: string) {
   return axiosInstance.get<Type>(url);
 }
