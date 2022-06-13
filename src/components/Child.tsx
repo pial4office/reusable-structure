@@ -9,9 +9,11 @@ export default function Child() {
 
   async function getMyData() {
     const response = await getData<TypeToDO>(
-      'https://jsonplaceholder.typicode.com/todos/1'
+      'https://jsonplaceholder.typicode.com/toodos/1'
     );
-    setToDo(response as TypeToDO);
+    if ((response as AxiosError).name !== 'AxiosError') {
+      // setToDo(response as TypeToDO);
+    }
   }
 
   useEffect(() => {
@@ -20,7 +22,7 @@ export default function Child() {
   return (
     <div>
       <h1>Child</h1>
-      <pre>{JSON.stringify(toDo, null, '\t')}</pre>
+      {/* <pre>{JSON.stringify(toDo, null, '\t')}</pre> */}
     </div>
   );
 }

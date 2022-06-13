@@ -2,7 +2,9 @@ import axiosInstance from './axiosInstance';
 import axios, { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
 
-export async function getData<Type>(url: string) {
+export async function getData<Type>(
+  url: string
+): Promise<Type | AxiosError | void> {
   const toastId = toast.loading('Loading...');
   try {
     const { data } = await axiosInstance.get<Type>(url);
@@ -13,7 +15,9 @@ export async function getData<Type>(url: string) {
   } catch (err) {
     toast.dismiss(toastId);
     if (axios.isAxiosError(err)) {
-      toast.error(err!.response!.data as string);
+      console.error(err);
+      toast.error(err.message);
+      return err;
     }
     throw err;
   }

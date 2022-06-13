@@ -5,7 +5,7 @@ import { TypeToDO } from '../type/toDo';
 export default async function getToDO() {
   try {
     const response: AxiosResponse<TypeToDO> = await getData(
-      'https://jsonplaceholder.typicode.com/todos/1'
+      'https://jsonplaceholder.typicode.com/tosdfdos/1'
     );
     console.log(response);
     return response;
