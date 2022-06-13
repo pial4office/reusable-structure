@@ -2,21 +2,16 @@ import { useEffect, useState } from 'react';
 import getToDO from '../test/getToDo';
 import { TypeToDO } from '../type/toDo';
 import { AxiosError } from 'axios';
+import { getData } from '../api/method';
 
 export default function Child() {
   const [toDo, setToDo] = useState<TypeToDO>();
 
   async function getMyData() {
-    const response = await getToDO<TypeToDO>();
-    console.log(typeof response);
-    if ((response as AxiosError).name !== 'AxiosError') {
-      console.log(response);
-      setToDo(response as TypeToDO);
-      console.log('error not occured');
-    } else {
-      console.log(response);
-      console.log('error occured');
-    }
+    const response = await getData<TypeToDO>(
+      'https://jsonplaceholder.typicode.com/todos/1'
+    );
+    setToDo(response as TypeToDO);
   }
 
   useEffect(() => {

@@ -1,13 +1,14 @@
-import { AxiosError } from 'axios';
-import axiosInstance from '../api/axiosInstance';
+import { AxiosError, AxiosResponse } from 'axios';
+import { getData } from '../api/method';
+import { TypeToDO } from '../type/toDo';
 
-export default async function getToDO<Type>(): Promise<Type | AxiosError> {
+export default async function getToDO() {
   try {
-    const { data } = await axiosInstance.get<Type>(
+    const response: AxiosResponse<TypeToDO> = await getData(
       'https://jsonplaceholder.typicode.com/todos/1'
     );
-    console.log(data);
-    return data;
+    console.log(response);
+    return response;
   } catch (err: unknown) {
     console.log(err);
     return err as AxiosError;
