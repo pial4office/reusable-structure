@@ -2,8 +2,6 @@ import { useCallback, useState, useEffect } from 'react';
 import './App.css';
 import Child from './components/Child';
 
-console.log(window);
-
 function App() {
   const [mount, setMount] = useState(false);
 
